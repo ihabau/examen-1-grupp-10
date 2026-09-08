@@ -1,126 +1,137 @@
+/* Ändring: Indentering ändrades från 4 mellanslag till 2 för bättre läsbarhet */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 /* Root variables  variabel man kan ateranvanda flera gånger */
 :root {
-    --primary-color: #083d77;
-    --secondary-color: #ebebd3;
-    --third-color: #da4167;
-    --text-color: rgb(68, 68, 68);
-    --font-family: sans-serif;
+  --primary-color: #083d77;
+  --secondary-color: #ebebd3;
+  --third-color: #da4167;
+  --text-color: rgb(68, 68, 68);
+  --font-family: sans-serif;
 }
 
 body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
-    font-size: 2rem;
-    margin-bottom: 8px;
+  font-size: 2rem;
+  margin-bottom: 8px;
 }
 
 p {
   font-family: var(--font-family);
-   color: var(--text-color);
-   line-height: 1.6;
+  color: var(--text-color);
+  line-height: 1.6;
 }
 
 ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    align-items: center;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
-nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;  
-    background-color: var(--primary-color);
-    color: white;
+/* Ändring: Dessa två regler lades till för att hantera mobilmenyn.
+   Originalfilen hade ingen CSS för knappen eller checkboxen. */
+.menu-checkbox {
+  display: none;
+}
+
+.m-btn {
+  display: none;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--primary-color);
+  color: white;
 }
 
 .logo-img {
-    height: 60px;
-    width: 60px;
-    border-radius: 50%;
-    border: 1px solid var(--third-color);
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  border: 1px solid var(--third-color);
 }
 
 nav a {
-    color: white;
-    text-decoration: none;
-    border-bottom: 2px solid var(--third-color);
-    font-family: var(--font-family);
-    
+  color: white;
+  text-decoration: none;
+  border-bottom: 2px solid var(--third-color);
+  font-family: var(--font-family);
 }
 
 nav a:hover {
-    border-bottom: 2px solid var(--secondary-color);
+  border-bottom: 2px solid var(--secondary-color);
 }
 
 .register-button {
-    background-color: var(--third-color);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    text-decoration: none;
+  background-color: var(--third-color);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
 }
 
 main {
-    flex: 1;
+  flex: 1;
 }
 
 .hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
 .hero .intro {
-    justify-self: center;
-    max-width: 480px;
-    text-align: center;
+  justify-self: center;
+  max-width: 480px;
+  text-align: center;
 }
 
 .hero .intro p {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 .hero-buttons button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: var(--primary-color);
-    border: none;
-    color: white;
-    border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  border-radius: 4px;
 }
 
 .hero-image {
-    width: 100%;
-    height: auto;
-    max-height: 400px;
-    object-fit: cover;
-    border-radius: 8px;
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-.typer-turneringar{
-    background-color: var(--secondary-color);
-    padding: 1rem;
+.typer-turneringar {
+  background-color: var(--secondary-color);
+  padding: 1rem;
 }
 
 .event-schema {
-    background-color: var(--third-color);
-    padding: 1rem;
+  background-color: var(--third-color);
+  padding: 1rem;
 }
 
 .event-schema p {
@@ -128,36 +139,79 @@ main {
 }
 
 article {
-    background-color: #f78764;
-    padding: 1rem;
+  background-color: #f78764;
+  padding: 1rem;
 }
+
 footer {
-    background-color: #f4d35e;
-    padding: 20px;
-    text-align: center;
+  background-color: #f4d35e;
+  padding: 20px;
+  text-align: center;
 }
 
+/* Ändring: Lade till regel för att dölja hamburgerknappen på desktop (>= 768px) */
+@media (min-width: 768px) {
+  .m-btn {
+    display: none;
+  }
+}
+
+/* Ändring: Mobilen menyn lades till helt. Originalfilen hade bara hero och typsnitt-regler här.
+   Ændringar:
+   - nav fick flex-wrap: wrap så att nav-links faller ner under knappen
+   - .m-btn blev synlig på mobil med styling
+   - .nav-links döljs som standard, visas när checkboxen är ikryssad
+   - width: 100% och order: 3 på .nav-links gör att menyn hamnar under logotypen och knappen */
 @media screen and (max-width: 768px) {
-    .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 20px;
-    }
-    .hero .intro {
-        justify-self: center;
-    }
+  nav {
+    flex-wrap: wrap;
+    text-align: center;
+  }
 
-    h1{
-        font-size: 1.4rem;
-    }
-    .hero .intro p {
-   font-size: 0.9rem;
-}
-    nav a {
-        font-size: 0.9rem;
-    }
-    .logo-img {
-        height: 40px;
-        width: 40px;
-    }
+  .logo-img {
+    height: 40px;
+    width: 40px;
+  }
+
+  .m-btn {
+    display: block;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1em;
+    width: 100%;
+    order: 3;
+  }
+
+  .menu-checkbox:checked ~ .nav-links {
+    display: flex;
+    /* show the menu when the (hidden) checkbox is ticked */
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .hero .intro {
+    justify-self: center;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .hero .intro p {
+    font-size: 0.9rem;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+  }
 }
