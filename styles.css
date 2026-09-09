@@ -1,15 +1,13 @@
-/* Ändring: Indentering ändrades från 4 mellanslag till 2 för bättre läsbarhet */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Root variables  variabel man kan ateranvanda flera gånger */
 :root {
   --primary-color: #083d77;
   --secondary-color: #ebebd3;
-  --third-color: #da4167;
+  --third-color: #2ba446;
   --text-color: rgb(68, 68, 68);
   --font-family: sans-serif;
 }
@@ -27,7 +25,6 @@ h1 {
 
 p {
   font-family: var(--font-family);
-  color: var(--text-color);
   line-height: 1.6;
 }
 
@@ -38,14 +35,35 @@ ul {
   align-items: center;
 }
 
-/* Ändring: Dessa två regler lades till för att hantera mobilmenyn.
-   Originalfilen hade ingen CSS för knappen eller checkboxen. */
 .menu-checkbox {
   display: none;
 }
 
 .m-btn {
   display: none;
+}
+
+.m-btn-unlock {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-bottom: none;
+  background-color: var(--primary-color);
+  color: white;
+  font-family: var(--font-family);
+}
+
+.nav-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
 }
 
 nav {
@@ -64,14 +82,14 @@ nav {
   border: 1px solid var(--third-color);
 }
 
-nav a {
+.nav-links a {
   color: white;
   text-decoration: none;
   border-bottom: 2px solid var(--third-color);
   font-family: var(--font-family);
 }
 
-nav a:hover {
+.nav-links a:hover {
   border-bottom: 2px solid var(--secondary-color);
 }
 
@@ -110,10 +128,14 @@ main {
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
-  background-color: var(--primary-color);
   border: none;
   color: white;
   border-radius: 4px;
+  margin: 0 5px;
+}
+
+.learn-more-button {
+  background-color: var(--primary-color);
 }
 
 .hero-image {
@@ -124,23 +146,65 @@ main {
   border-radius: 8px;
 }
 
-.typer-turneringar {
-  background-color: var(--secondary-color);
-  padding: 1rem;
-}
-
 .event-schema {
-  background-color: var(--third-color);
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+  margin: 2rem 0;
   padding: 1rem;
 }
 
-.event-schema p {
-  color: white;
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
 }
 
-article {
-  background-color: #f78764;
-  padding: 1rem;
+.schedule-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: #dfdddd;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.schedule-item h3 {
+  margin-bottom: 8px;
+}
+
+.schedule-item p {
+  margin: 4px 0;
+}
+
+.highlights h2 {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.kort-rad {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 1.5rem 0;
+}
+
+.kort img {
+  width: 200px;
+  height: 200px;
+  object-position: top;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.kort {
+  width: 220px;
+  background: #dfdddd;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
 }
 
 footer {
@@ -156,28 +220,16 @@ footer .box {
   padding: 1rem;
 }
 
-footer ul {
-  list-style: none;
-  padding: 0;
-}
-
-/* Ändring: Lade till regel för att dölja hamburgerknappen på desktop (>= 768px) */
-@media (min-width: 768px) {
-  .m-btn {
-    display: none;
-  }
-}
-
-/* Ändring: Mobilen menyn lades till helt. Originalfilen hade bara hero och typsnitt-regler här.
-   Ændringar:
-   - nav fick flex-wrap: wrap så att nav-links faller ner under knappen
-   - .m-btn blev synlig på mobil med styling
-   - .nav-links döljs som standard, visas när checkboxen är ikryssad
-   - width: 100% och order: 3 på .nav-links gör att menyn hamnar under logotypen och knappen */
 @media screen and (max-width: 768px) {
   nav {
+    position: relative;
+    z-index: 10;
     flex-wrap: wrap;
     text-align: center;
+  }
+
+  .schedule-item {
+    grid-template-columns: 1fr;
   }
 
   .logo-img {
@@ -189,6 +241,14 @@ footer ul {
     display: block;
     cursor: pointer;
     text-align: center;
+    font-size: 0.9rem;
+    font-family: var(--font-family);
+    position: relative;
+    z-index: 20;
+  }
+
+  .menu-checkbox:checked~.nav-overlay {
+    display: block;
   }
 
   .nav-links {
@@ -198,11 +258,24 @@ footer ul {
     margin-top: 1em;
     width: 100%;
     order: 3;
+    position: relative;
+    z-index: 20;
   }
 
-  .menu-checkbox:checked ~ .nav-links {
+  .menu-checkbox:checked~.nav-links {
     display: flex;
-    /* show the menu when the (hidden) checkbox is ticked */
+  }
+
+  body:has(:target) .nav-links {
+    display: none !important;
+  }
+
+  body:has(:target) .nav-overlay {
+    display: none !important;
+  }
+
+  body:has(:target) .m-btn-unlock {
+    display: flex;
   }
 
   .hero {
@@ -223,7 +296,7 @@ footer ul {
     font-size: 0.9rem;
   }
 
-  nav a {
+  .nav-links a {
     font-size: 0.9rem;
   }
 }

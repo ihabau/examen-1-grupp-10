@@ -1,69 +1,168 @@
 <!doctype html>
 <html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Skolans årliga pingisturnering för juniorer och evenemang."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Skolans årliga pingisturnering för juniorer - 2026</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Skolans årliga pingisturnering för juniorer och evenemang." />
-  <link rel="stylesheet" href="./styles.css" />
-  <title>Skolans årliga pingisturnering för juniorer - 2026</title>
-</head>
+  <body>
+    <header id="hem">
+      <nav>
+        <a href="#" aria-label="Till toppen av sidan">
+          <img class="logo-img" src="./asset/logo.jpg" alt="Logo" />
+        </a>
 
-<body>
-  <header id="hem">
-    <nav>
-      <img class="logo-img" src="./asset/logo.jpg" alt="Logo" />
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+        <label for="menu-toggle" class="m-btn">
+          ☰ Menu
+          <a href="#" class="m-btn-unlock" aria-label="Öppna menyn">☰ Menu</a>
+        </label>
 
-      <!-- The hidden toggle switch -->
-      <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
-      <!-- The clickable hamburger button (visible on mobile only) -->
-      <label for="menu-toggle" class="m-btn">☰ Menu</label>
+        <label
+          for="menu-toggle"
+          class="nav-overlay"
+          aria-label="Stäng menyn"
+        ></label>
 
-      <ul class="nav-links">
-        <li><a href="#schema">Schema </a></li>
-        <li><a href="#highlight">Hojdpunkter </a></li>
-        <li><a class="register-button" href="#register">Anmäl dig</a></li>
-      </ul>
-    </nav>
-    <section class="hero">
-      <div class="intro">
-        <h1>2026 pingisturnering för juniorer.</h1>
-        <p>
-          Skolans årliga pingisturnering för juniorer. Var med och tävla i
-          årets största pingisturnering!
-        </p>
+        <ul class="nav-links">
+          <li><a href="#schema">Schema </a></li>
+          <li><a href="#hojdpunkter">Höjdpunkter </a></li>
+          <li><a class="register-button" href="#contact">Kontakt</a></li>
+        </ul>
+      </nav>
+      <section class="hero">
+        <div class="intro">
+          <h1>2026 pingisturnering för juniorer.</h1>
+          <p>
+            Skolans årliga pingisturnering för juniorer. Var med och tävla i
+            årets största pingisturnering!
+          </p>
 
-        <div class="hero-buttons">
-          <button>Läs mer</button>
-          <button>Anmal dig</button>
+          <div class="hero-buttons">
+            <button class="learn-more-button">Kontakt</button>
+            <button class="register-button">Anmäl dig</button>
+          </div>
         </div>
-      </div>
-      <img class="hero-image" src="https://images.pexels.com/photos/38446269/pexels-photo-38446269.jpeg"
-        alt="Skolans pingisturnerings logotyp" />
-    </section>
-  </header>
-  <main>
-    <section id="schema" class="event-schema">
-      <p>alla turneringar och evenemang med tid, datum och plats Grid.</p>
-    </section>
-    <section id="highlight" class="highlight">
-      <p>Hojdpunkter från tidigare turneringar och evenemang.</p>
-    </section>
-  </main>
-  <footer id="footer">
-    <div class="box">
-      <h2>Kontakt</h2>
-      <p>info@pingisturnering.se</p>
-      <p>+46 8 123 456 78</p>
-    </div>
-    <div class="box">
-      <h2>Sponsorer</h2>
-      <p>
-        Stockholms Stad · Nordic Lights AB · Gröna Lund · Svenska Kulturfonden
-      </p>
-    </div>
-    <p>&copy; 2026 Grupp 10</p>
-  </footer>
-</body>
+        <img
+          class="hero-image"
+          src="https://images.pexels.com/photos/38446269/pexels-photo-38446269.jpeg"
+          alt="Skolans pingisturnerings logotyp"
+        />
+      </section>
+    </header>
+    <main>
+      <hr />
+      <section id="schema" class="event-schema">
+        <h2>Schema för turneringen</h2>
+        <p>
+          Här är schemat för turneringen med start 09:00 den 29 september 2026.
+        </p>
+        <div class="schedule-grid">
+          <div class="schedule-item">
+            <h3>Gruppspel, omgång 1</h3>
+            <p><strong>Tid:</strong> 10:00 - 12:00</p>
+            <p><strong>Plats:</strong> Bord 1-6</p>
+          </div>
+          <div class="schedule-item">
+            <h3>Gruppspel, omgång 2</h3>
+            <p><strong>Tid:</strong> 12:30 - 14:30</p>
+            <p><strong>Plats:</strong> Bord 1-6</p>
+          </div>
+          <div class="schedule-item">
+            <h3>Slutspel</h3>
+            <p><strong>Tid:</strong> 15:00 - 16:30</p>
+            <p><strong>Plats:</strong> Bord 1-2</p>
+          </div>
+          <div class="schedule-item">
+            <h3>Prisutdelning</h3>
+            <p><strong>Tid:</strong> 17:00 - 17:30</p>
+            <p><strong>Plats:</strong> Bord 1-2</p>
+          </div>
+        </div>
+      </section>
+      <hr />
+      <section id="hojdpunkter" class="highlights">
+        <h2>Höjdpunkter</h2>
 
+        <div class="kort-rad">
+          <article class="kort">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9SuQrRTHVnBZpoXj59LIU4DnHF1QL5_Ue4gM-aTAo4Q&s=10"
+              alt="Truls Möregårdh"
+            />
+            <h3>Truls Möregårdh</h3>
+            <p>silver från OS 2024</p>
+          </article>
+
+          <article class="kort">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjBD2KAC6i3untYqGc_3fm5TYQen4tY27xIa-uF07qHQ&s=10"
+              alt="Stina Källberg"
+            />
+            <h3>Stina Källberg</h3>
+            <p>SM-guld singel 2022, 2023 och 2024</p>
+          </article>
+
+          <article class="kort">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgoF1NgeCKVLOj1bw0esr3e_vXu4RKAR4BYXpgHLAWpi_F1dPeaScfp1lw&s=10"
+              alt="Anton Källberg"
+            />
+            <h3>Anton Källberg</h3>
+            <p>Silvermedalj under OS i Paris 2024.</p>
+          </article>
+
+          <article class="kort">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3_9_IE8wQgOLfBblfpt4Ey-pgyKsimlrO-IQZ_KtV15DILxvuS4tlfXA&s=10"
+              alt="Jan-Ove Waldner"
+            />
+            <h3>Jan-Ove Waldner</h3>
+            <p>
+              "Bordtennisens Mozart" Olympisk mästare (1992) och flera gånger
+              världsmästare.
+            </p>
+          </article>
+
+          <article class="kort">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyj36WTNNLN4P1WPVR1_jusAmHxM1eAroHDNzju5-Kcbr9jBk69pu27nA&s=10"
+              alt="Jörgen Persson"
+            />
+            <h3>Jörgen Persson</h3>
+            <p>Världsmästare i singel (1991)</p>
+          </article>
+
+          <article class="kort">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIwsSanIgrrH8ojMgBk1HXPciWaw98ynn4r19STN_-02vUyHrJJR8E6OHj&s=10"
+              alt="Stella Bengtsson"
+            />
+            <h3>Stellan Bengtsson</h3>
+            <p>Sveriges första världsmästare i pingis (1971).</p>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer id="contact">
+      <div class="box">
+        <h2>Kontakt</h2>
+        <p>info@pingisturnering.se</p>
+        <p>+46 8 123 456 78</p>
+      </div>
+      <div class="box">
+        <h2>Sponsorer</h2>
+        <p>
+          Stockholms Stad · Nordic Lights AB · Gröna Lund · Svenska Kulturfonden
+        </p>
+      </div>
+      <p>&copy; 2026 Grupp 10</p>
+    </footer>
+  </body>
 </html>
