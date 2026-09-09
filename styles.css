@@ -1,11 +1,11 @@
-/* Ändring: Indentering ändrades från 4 mellanslag till 2 för bättre läsbarhet */
+/* Change: Indentation changed from 4 spaces to 2 for better readability */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Root variables  variabel man kan ateranvanda flera gånger */
+/* Root variables — variable you can reuse several times */
 :root {
   --primary-color: #083d77;
   --secondary-color: #ebebd3;
@@ -37,14 +37,44 @@ ul {
   align-items: center;
 }
 
-/* Ändring: Dessa två regler lades till för att hantera mobilmenyn.
-   Originalfilen hade ingen CSS för knappen eller checkboxen. */
 .menu-checkbox {
   display: none;
 }
 
 .m-btn {
   display: none;
+}
+
+/* Copy of the ☰ button that overrides the real one ONLY while a section is
+   :target (menu locked shut after a nav-link click). It is an <a href="#">, so
+   tapping it clears the hash and lets the label reopen the menu. Hidden by
+   default; shown via "body:has(:target)" in the mobile media query. */
+.m-btn-unlock {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-bottom: none;
+  /* Opaque so it hides the label's text behind it when shown. */
+  background-color: var(--primary-color);
+  color: white;
+  font-family: var(--font-family);
+}
+
+.m-btn-unlock:hover {
+  border-bottom: none;
+}
+
+.nav-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
 }
 
 nav {
@@ -61,6 +91,17 @@ nav {
   width: 60px;
   border-radius: 50%;
   border: 1px solid var(--third-color);
+}
+
+/* Logo link: navigates to "#" (top of page). This clears the :target
+   set by a nav-link click so the ☰ button can reopen the menu. */
+.logo-link {
+  display: inline-block;
+  border-bottom: none;
+}
+
+.logo-link:hover {
+  border-bottom: none;
 }
 
 nav a {
@@ -128,8 +169,8 @@ main {
 }
 
 .event-schema {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -140,12 +181,13 @@ main {
 
 .schedule-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
 }
 
 .schedule-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   background: #dfdddd;
   padding: 10px;
   border-radius: 10px;
@@ -155,36 +197,34 @@ main {
 .schedule-item h3 {
   margin-bottom: 8px;
 }
+
 .schedule-item p {
   margin: 4px 0;
 }
 
 .highlights h2 {
-    text-align: center;
-    margin-top: 1rem;
+  text-align: center;
+  margin-top: 1rem;
 }
-
 
 .kort-rad {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   gap: 20px;
-  margin: 1.5rem 0; 
-  align-self: center;
+  margin: 1.5rem 0;
 }
 
 .kort img {
   width: 200px;
   height: 200px;
-   object-position: top;
+  object-position: top;
   object-fit: cover;
   border-radius: 8px;
 }
 
 .kort {
   width: 220px;
-  height: 100%;
   background: #dfdddd;
   padding: 10px;
   border-radius: 10px;
@@ -209,23 +249,27 @@ footer ul {
   padding: 0;
 }
 
-/* Ändring: Lade till regel för att dölja hamburgerknappen på desktop (>= 768px) */
 @media (min-width: 768px) {
   .m-btn {
     display: none;
   }
 }
 
-/* Ändring: Mobilen menyn lades till helt. Originalfilen hade bara hero och typsnitt-regler här.
-   Ændringar:
-   - nav fick flex-wrap: wrap så att nav-links faller ner under knappen
-   - .m-btn blev synlig på mobil med styling
-   - .nav-links döljs som standard, visas när checkboxen är ikryssad
-   - width: 100% och order: 3 på .nav-links gör att menyn hamnar under logotypen och knappen */
 @media screen and (max-width: 768px) {
   nav {
+    position: relative;
+    z-index: 10;
     flex-wrap: wrap;
     text-align: center;
+  }
+
+  .schedule-grid {
+    display: grid;
+    justify-content: center;
+  }
+
+  .schedule-item {
+    grid-template-columns: 1fr;
   }
 
   .logo-img {
@@ -233,10 +277,18 @@ footer ul {
     width: 40px;
   }
 
+  /* CHECKBOX HACK */
   .m-btn {
     display: block;
     cursor: pointer;
     text-align: center;
+    /* Fix: keep above the .nav-overlay (z-index: 5) so the button stays clickable */
+    position: relative;
+    z-index: 20;
+  }
+
+  .menu-checkbox:checked~.nav-overlay {
+    display: block;
   }
 
   .nav-links {
@@ -246,12 +298,41 @@ footer ul {
     margin-top: 1em;
     width: 100%;
     order: 3;
+    /* Fix: the dropdown was UNDER the full-screen overlay, so clicking the <a>
+       tags hit the overlay and never navigated. Push the links above it. */
+    position: relative;
+    z-index: 20;
   }
 
-  .menu-checkbox:checked ~ .nav-links {
+  .menu-checkbox:checked~.nav-links {
     display: flex;
-    /* show the menu when the (hidden) checkbox is ticked */
   }
+
+  /* Close the dropdown when a nav link is clicked: the anchor navigates, which
+     makes the linked section the CSS :target, so this rule hides the menu even
+     while the checkbox stays checked (!important wins over the :checked rule).
+     Pure CSS — no JavaScript. Trade-off: the target stays active, so the ☰
+     button alone can't reopen the menu — tap the logo (href="#") to clear it. */
+  body:has(:target) .nav-links {
+    display: none !important;
+  }
+
+  /* The checkbox is still checked after a link click, so the full-screen
+     overlay would otherwise keep blocking the page — hide it together with
+     the menu once a section is :target. */
+  body:has(:target) .nav-overlay {
+    display: none !important;
+  }
+
+  /* Reopen fix: while a section is :target, the real label can't clear the
+     hash, so this copy of the button (which covers the label and links to "#")
+     is shown instead. Tapping it clears :target, which lets the checked box
+     show the dropdown again. */
+  body:has(:target) .m-btn-unlock {
+    display: flex;
+  }
+
+  /* CHECKBOX HACK */
 
   .hero {
     grid-template-columns: 1fr;
@@ -274,9 +355,4 @@ footer ul {
   nav a {
     font-size: 0.9rem;
   }
-
-  .schedule-grid {
-    grid-template-columns: 1fr;
-  }
-
 }
