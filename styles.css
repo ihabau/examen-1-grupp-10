@@ -147,6 +147,18 @@ footer {
   background-color: #f4d35e;
   padding: 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+footer .box {
+  padding: 1rem;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
 }
 
 /* Ändring: Lade till regel för att dölja hamburgerknappen på desktop (>= 768px) */
