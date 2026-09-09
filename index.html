@@ -14,19 +14,13 @@
   <body>
     <header id="hem">
       <nav>
-        <!-- Logo link: href="#" scrolls to top and clears the :target state,
-             which lets the ☰ button reopen the menu after a nav-link click. -->
-        <a href="#" class="logo-link" aria-label="Till toppen av sidan">
+        <a href="#" aria-label="Till toppen av sidan">
           <img class="logo-img" src="./asset/logo.jpg" alt="Logo" />
         </a>
 
         <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
         <label for="menu-toggle" class="m-btn">
           ☰ Menu
-          <!-- After a nav-link click the URL keeps #section, which locks the
-               dropdown shut (see CSS :target rules). This anchor covers the
-               button in that case and links to "#", clearing the hash so the
-               menu can open again. Shown only when needed (CSS). -->
           <a href="#" class="m-btn-unlock" aria-label="Öppna menyn">☰ Menu</a>
         </label>
 

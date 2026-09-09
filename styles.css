@@ -1,11 +1,9 @@
-/* Change: Indentation changed from 4 spaces to 2 for better readability */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Root variables — variable you can reuse several times */
 :root {
   --primary-color: #083d77;
   --secondary-color: #ebebd3;
@@ -45,10 +43,6 @@ ul {
   display: none;
 }
 
-/* Copy of the ☰ button that overrides the real one ONLY while a section is
-   :target (menu locked shut after a nav-link click). It is an <a href="#">, so
-   tapping it clears the hash and lets the label reopen the menu. Hidden by
-   default; shown via "body:has(:target)" in the mobile media query. */
 .m-btn-unlock {
   display: none;
   position: absolute;
@@ -57,14 +51,9 @@ ul {
   justify-content: center;
   text-decoration: none;
   border-bottom: none;
-  /* Opaque so it hides the label's text behind it when shown. */
   background-color: var(--primary-color);
   color: white;
   font-family: var(--font-family);
-}
-
-.m-btn-unlock:hover {
-  border-bottom: none;
 }
 
 .nav-overlay {
@@ -93,25 +82,14 @@ nav {
   border: 1px solid var(--third-color);
 }
 
-/* Logo link: navigates to "#" (top of page). This clears the :target
-   set by a nav-link click so the ☰ button can reopen the menu. */
-.logo-link {
-  display: inline-block;
-  border-bottom: none;
-}
-
-.logo-link:hover {
-  border-bottom: none;
-}
-
-nav a {
+.nav-links a {
   color: white;
   text-decoration: none;
   border-bottom: 2px solid var(--third-color);
   font-family: var(--font-family);
 }
 
-nav a:hover {
+.nav-links a:hover {
   border-bottom: 2px solid var(--secondary-color);
 }
 
@@ -170,8 +148,6 @@ main {
 
 .event-schema {
   display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
   justify-content: center;
   text-align: center;
   gap: 16px;
@@ -244,28 +220,12 @@ footer .box {
   padding: 1rem;
 }
 
-footer ul {
-  list-style: none;
-  padding: 0;
-}
-
-@media (min-width: 768px) {
-  .m-btn {
-    display: none;
-  }
-}
-
 @media screen and (max-width: 768px) {
   nav {
     position: relative;
     z-index: 10;
     flex-wrap: wrap;
     text-align: center;
-  }
-
-  .schedule-grid {
-    display: grid;
-    justify-content: center;
   }
 
   .schedule-item {
@@ -277,12 +237,12 @@ footer ul {
     width: 40px;
   }
 
-  /* CHECKBOX HACK */
   .m-btn {
     display: block;
     cursor: pointer;
     text-align: center;
-    /* Fix: keep above the .nav-overlay (z-index: 5) so the button stays clickable */
+    font-size: 0.9rem;
+    font-family: var(--font-family);
     position: relative;
     z-index: 20;
   }
@@ -298,8 +258,6 @@ footer ul {
     margin-top: 1em;
     width: 100%;
     order: 3;
-    /* Fix: the dropdown was UNDER the full-screen overlay, so clicking the <a>
-       tags hit the overlay and never navigated. Push the links above it. */
     position: relative;
     z-index: 20;
   }
@@ -308,31 +266,17 @@ footer ul {
     display: flex;
   }
 
-  /* Close the dropdown when a nav link is clicked: the anchor navigates, which
-     makes the linked section the CSS :target, so this rule hides the menu even
-     while the checkbox stays checked (!important wins over the :checked rule).
-     Pure CSS — no JavaScript. Trade-off: the target stays active, so the ☰
-     button alone can't reopen the menu — tap the logo (href="#") to clear it. */
   body:has(:target) .nav-links {
     display: none !important;
   }
 
-  /* The checkbox is still checked after a link click, so the full-screen
-     overlay would otherwise keep blocking the page — hide it together with
-     the menu once a section is :target. */
   body:has(:target) .nav-overlay {
     display: none !important;
   }
 
-  /* Reopen fix: while a section is :target, the real label can't clear the
-     hash, so this copy of the button (which covers the label and links to "#")
-     is shown instead. Tapping it clears :target, which lets the checked box
-     show the dropdown again. */
   body:has(:target) .m-btn-unlock {
     display: flex;
   }
-
-  /* CHECKBOX HACK */
 
   .hero {
     grid-template-columns: 1fr;
@@ -352,7 +296,7 @@ footer ul {
     font-size: 0.9rem;
   }
 
-  nav a {
+  .nav-links a {
     font-size: 0.9rem;
   }
 }
